@@ -1,0 +1,43 @@
+{
+  "keyboard": {
+    "name": "My 3x4 Keyboard with 2 Encoders",
+    "layout": {
+      "rows": [
+        ["KC_A", "KC_B", "KC_C", "KC_D", "KC_0"],
+        ["KC_E", "KC_F", "KC_G", "KC_H", "KC_1"],
+        ["KC_I", "KC_J", "KC_K", "KC_L"]
+      ],
+      "encoder": [
+        ["ENC_LEFT", "ENC_RIGHT"],
+        ["ENC_UP", "ENC_DOWN"]
+      ],
+      "config": {
+        "has_rgb": false
+      }
+    }
+  },
+  "keymap": {
+    "keymap": [
+      [
+        { "label": "A", "key": "KC_A" },
+        { "label": "B", "key": "KC_B" },
+        { "label": "C", "key": "KC_C" },
+        { "label": "D", "key": "KC_D" },
+	{ "label": "0", "key": "KC_0" }
+      ],
+      [
+        { "label": "E", "key": "KC_E" },
+        { "label": "F", "key": "KC_F" },
+        { "label": "G", "key": "KC_G" },
+        { "label": "H", "key": "KC_H" },
+	{ "label": "1", "key": "KC_1" }
+      ],
+      [
+        { "label": "I", "key": "KC_I" },
+        { "label": "J", "key": "KC_J" },
+        { "label": "K", "key": "KC_K" },
+        { "label": "L", "key": "KC_L" }
+      ]
+    ]
+  }
+}
