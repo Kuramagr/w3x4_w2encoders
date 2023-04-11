@@ -209,4 +209,3 @@ lastButton2State = button2State;
 encoder1.write(0);
 encoder2.write(0);
 }
-}
