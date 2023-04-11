@@ -1,0 +1,116 @@
+//This is my final code for Davinci resolve using a teensy 2.0 and the custom keyboard with 3x4 and 2 encoders
+//The macro keyboard is handwired and im using every switch with a Pin and the other switch to the ground of the board.
+//You can add more cases to change Layouts. I use only one because i need it only for editing videos.
+//i hope it helps at least to start from somewhere.
+//PS. the keyboard.press() is for mac you can have to change it for windows and for your shortcuts on davinci resolve.
+//The encoder action will be add it shortly.
+
+
+#include <Bounce2.h>
+#include <Keyboard.h>
+#include <Encoder.h>
+
+
+//Set up the button grid
+const int numButtons = 12;
+const int buttonPins[numButtons] = {3,6,15,18,4,7,14,17,5,8,13,16}; //Array of button pins in an order 
+int state = 0;
+//Set up all the buttons as bounce objects
+Bounce buttons[] = {Bounce(buttonPins[0],10),Bounce(buttonPins[1],10),Bounce(buttonPins[2],10),Bounce(buttonPins[3],10),Bounce(buttonPins[4],10),Bounce(buttonPins[5],10),Bounce(buttonPins[6],10),Bounce(buttonPins[7],10),Bounce(buttonPins[8],10),Bounce(buttonPins[9],10),Bounce(buttonPins[10],10),Bounce(buttonPins[11],10)};
+
+
+void setup() {
+  Serial.begin(9600);
+  Keyboard.begin(); //Start the Keyboard object
+  for(int i = 0; i < numButtons; i++){
+     pinMode(buttonPins[i], INPUT_PULLUP);
+  }
+}
+
+
+void loop() {
+  //check all buttons
+  for(int j = 0; j < numButtons; j++){
+    if(buttons[j].update()){
+      if(buttons[j].fallingEdge()){
+        //Serial.write("Button");
+       
+
+        //use the current state and the button number to find the command needed and send it.
+        switch (state) {
+          case 0: //Layout 1
+            switch (j) {
+              case 0: 
+                Keyboard.press('M');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 1: 
+              Keyboard.press(KEY_RIGHT_SHIFT);
+                Keyboard.press('J');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 2: 
+              Keyboard.press('K');
+                delay(100);
+                Keyboard.releaseAll();
+               break;
+              case 3:
+                Keyboard.press(KEY_RIGHT_SHIFT);
+                Keyboard.press('L');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 4: 
+              Keyboard.press(KEY_RIGHT_GUI);
+                Keyboard.press('V');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 5:
+              Keyboard.press(KEY_RIGHT_GUI);
+                Keyboard.press('C');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 6: 
+                Keyboard.press('O');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 7:
+                Keyboard.press('I');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 8:
+              Keyboard.press(KEY_RIGHT_GUI);
+                Keyboard.press('E');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 9:
+              Keyboard.press(KEY_RIGHT_GUI);
+                Keyboard.press('A');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 10:
+              Keyboard.press(KEY_RIGHT_ALT);
+                Keyboard.press('S');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+              case 11:
+              Keyboard.press(KEY_RIGHT_GUI);
+                Keyboard.press('X');
+                delay(100);
+                Keyboard.releaseAll();
+                break;
+             }
+            break;
+
+    }
+  }
+}
